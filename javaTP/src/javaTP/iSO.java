@@ -3,7 +3,9 @@ package javaTP;
 //Sistema Operativo
 public interface iSO {
 	
-	public iSO getSO();
+	public String getSO();
+	public String getVersion();
+	public IP getIPHost();
 	
 
 }

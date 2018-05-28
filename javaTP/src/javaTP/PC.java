@@ -8,22 +8,15 @@ public class PC extends Terminal
 	}
 	
 	@Override
-	public iSO getSO() {
+	public String getSO() {
 		// TODO Auto-generated method stub
-		return this.sistema_Operativo;
+		return this.sistema_Operativo.getSO();
 	}
 
 	@Override
 	public iDispositivo getDispositivo() {
 		// TODO Auto-generated method stub
 		return this.tipo_Dispositivo;
-	}
-
-	@Override
-	public void instalarSO(iSO SO) {
-
-		this.sistema_Operativo = SO;
-		
 	}
 
 	@Override
@@ -46,6 +39,15 @@ public class PC extends Terminal
 			
 		}
 		
+		
+	}
+
+	@Override
+	public void instalarSO(SistemaOperativo SO) {
+
+		sistema_Operativo.so = SO.so;
+		sistema_Operativo.version = SO.version;
+		sistema_Operativo.ip = this.ip_Host[0];
 		
 	}
 
