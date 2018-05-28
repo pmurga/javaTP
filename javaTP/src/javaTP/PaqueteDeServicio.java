@@ -1,12 +1,11 @@
 package javaTP;
 
 public class PaqueteDeServicio extends Paquete{
-	enum TipoDeServicio {b, a, otros}
-	private TipoDeServicio servicio;
+	private TipoDeServicio tipo;	 
 	
 	public PaqueteDeServicio() {
 		super();
-		servicio = TipoDeServicio.otros;
+		
 	}
 	
 	public void procesar() {
@@ -20,19 +19,5 @@ public class PaqueteDeServicio extends Paquete{
 		
 	}
 	
-	/*
-	public boolean esMismaRed(IP dest) {
-		boolean es = false;
-		if (this.ipDestino.getOct1()==dest.getOct1()) {
-			if(this.ipDestino.getOct2()==dest.getOct2()) {
-				if(this.ipDestino.getOct3()==dest.getOct3()) {
-					es = true;
-				}
-			}
-			
-		}
-		return es;
-	}
-	*/
 	
 }
