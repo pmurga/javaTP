@@ -57,4 +57,16 @@ public class IP {
 		oct4 = n4;	
 		validar();
 			}
+	public boolean esMismaRed(IP dest) {
+		boolean es = false;
+		if (oct1==dest.getOct1()) {
+			if(oct2==dest.getOct2()) {
+				if(oct3==dest.getOct3()) {
+					es = true;
+				}
+			}
+			
+		}
+		return es;
+	}
 }

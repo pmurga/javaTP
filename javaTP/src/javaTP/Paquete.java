@@ -1,6 +1,6 @@
 package javaTP;
 
-	public class Paquete {
+	public abstract class Paquete {
 		
 		protected IP ipDestino;
 		protected IP ipOrigen;
@@ -17,5 +17,8 @@ package javaTP;
 			ipDestino = dest;
 			ttl = t;
 		}
+		
+		public abstract void procesar();
+		public abstract boolean esMismaRed(IP dest);
 		
 	}
