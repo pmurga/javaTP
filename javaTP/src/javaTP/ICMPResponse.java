@@ -1,17 +1,18 @@
 package javaTP;
 
 
+import java.util.Date;
 import java.util.Timer;
 
 public class ICMPResponse implements TipoDeServicio{
 	private IP origen;
 	private String servicio;
-	private Timer timestamp;
+	private Date timestamp;
 	
 	@Override
 	public String getServicio() {
 		// TODO Auto-generated method stub
-		return null;
+		return servicio;
 	}
 	public IP getOrigen() {
 		return origen;
@@ -19,10 +20,10 @@ public class ICMPResponse implements TipoDeServicio{
 	public void setOrigen(IP origen) {
 		this.origen = origen;
 	}
-	public Timer getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(Timer timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 	public void setServicio(String servicio) {
@@ -33,7 +34,7 @@ public class ICMPResponse implements TipoDeServicio{
 	public ICMPResponse() {
 		servicio = "ICMPResponse";
 	}
-	public ICMPResponse(Timer t,IP p) {
+	public ICMPResponse(Date t,IP p) {
 		servicio = "ICMPResponse";
 		origen = p;
 		timestamp = t;
