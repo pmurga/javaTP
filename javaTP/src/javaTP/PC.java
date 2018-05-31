@@ -12,13 +12,13 @@ public class PC extends Terminal
 		// TODO Auto-generated method stub
 		return this.sistema_Operativo.getSO();
 	}
-
+/*
 	@Override
 	public iDispositivo getDispositivo() {
 		// TODO Auto-generated method stub
 		return this.tipo_Dispositivo;
 	}
-
+*/
 	@Override
 	public void setIpHost(IP ip) {
 		
