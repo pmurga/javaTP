@@ -2,26 +2,30 @@ package javaTP;
 
 public class SistemaOperativo implements iSO {
 
-	protected String so;
-	protected IP ip;
-	protected String version;
+	protected String so_nombre;
+	protected IP so_ip;
+	protected String so_version;
 	
 	
 	//return del nombre del Sistema Operativo
 	@Override
 	public String getSO() {
-		return so;
+		return so_nombre;
 	}
 
 	@Override
 	public String getVersion() {
-		return version;
+		return so_version;
 	}
 
 	@Override
 	public IP getIPHost() {
-		return ip;
+		return so_ip;
 	}
 
-
+	public void instalar(String nombre, String version )
+	{
+		this.so_nombre = nombre;
+		this.so_version = version;
+	}
 }
