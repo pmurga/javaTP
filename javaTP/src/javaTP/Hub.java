@@ -2,7 +2,7 @@ package javaTP;
 
 import java.util.ArrayList;
 
-public abstract class Hub extends Dispositivo implements iConexion{
+public abstract class Hub extends Dispositivo{
 
 	protected ArrayList<Dispositivo> dispositivos;
 	
@@ -20,9 +20,7 @@ public abstract class Hub extends Dispositivo implements iConexion{
 					((Hub) dispositivo).recibir(p);
 				} /*else if (dispositivo instance of Router)
 					{
-				
 						((Router) dispositivo).recibir(p);
-		
 					}*/	
 		}
 	}
@@ -32,14 +30,27 @@ public abstract class Hub extends Dispositivo implements iConexion{
 		this.enviar(p);
 		
 	}
-	public void conectar(Dispositivo d) 
+	@Override
+	public boolean conectar(Conectable d2)
 	{
-		//llenar el arreglo de puertos
-		if (!(dispositivos.contains(d))) /* si el dispositivo no esta conectado ya */
+		// validar que this no es mismo dispositivo que d2 (para que no se conecte a si mismo)
+		
+		// validar que this tenga puerto libre para conectar
+		if (this.tienePuertosLibres())
 		{
-			dispositivos.add(d);
-		//	d.conectar(this); HAY QUE HACER UPCASTING DE ESTO 
+			// validar que d2 tenga puerto libre para conectar	
+			if (((Dispositivo) d2).tienePuertosLibres())
+			{
+				// validar que d2 no esta conectado ya a this
+				if (!(this.conectados.contains(d2))) 
+				{	
+					this.conectados.add(d2);
+					boolean x = d2.conectar(this);
+					if (x == true) {return true;}
+				}
+			}	
 		}
+		return false;
 	}
 	
 }
