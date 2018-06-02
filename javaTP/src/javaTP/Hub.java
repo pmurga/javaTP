@@ -35,6 +35,7 @@ public abstract class Hub extends Dispositivo{
 						this.conectados[p1] = d2;
 						int p2 = ((Dispositivo) d2).getPuertoLibre();
 						((Dispositivo) d2).conectados[p2] = this;	
+						return true;
 				}	
 			}
 		}
