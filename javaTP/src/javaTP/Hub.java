@@ -31,8 +31,10 @@ public abstract class Hub extends Dispositivo{
 				// validar que d2 tenga puerto libre para conectar	
 				if (((Dispositivo) d2).tienePuertosLibres())
 				{
-						this.conectados.add(d2);
-						((Dispositivo) d2).conectados.add(this);	
+						int p1 = this.getPuertoLibre();
+						this.conectados[p1] = d2;
+						int p2 = ((Dispositivo) d2).getPuertoLibre();
+						((Dispositivo) d2).conectados[p2] = this;	
 				}	
 			}
 		}
