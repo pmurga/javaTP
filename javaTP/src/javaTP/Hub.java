@@ -1,14 +1,10 @@
 package javaTP;
 
-import java.util.ArrayList;
-
 public abstract class Hub extends Dispositivo{
-
-	protected ArrayList<Dispositivo> dispositivos;
 	
 	public void enviar(Paquete p) 
 	{
-		for(Dispositivo dispositivo : dispositivos) 
+		for(Conectable dispositivo : conectados) 
 		{
 			dispositivo.recibir(p);
 		}
@@ -41,5 +37,25 @@ public abstract class Hub extends Dispositivo{
 		}
 		return false;
 	}
+	
+	public Hub(int puertos)
+	{
+		puertos = puertosValidar(puertos);
+		this.nroPuertos = puertos;
+		this.conectados = new Conectable[nroPuertos];
+	}
+	
+	protected int puertosValidar(int p)
+	{
+		if( p != 4 || p != 8 || p !=16 || p != 32)
+		{
+			return 4;
+		}else
+		{
+			return p;
+		}
+		
+	}
+	
 	
 }
