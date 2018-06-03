@@ -46,4 +46,16 @@ public class IP extends DirRed{
 		}
 		return es;
 	}
+	public boolean esMismaIP(IP ip_aux)
+	{
+		if (this.esMismaRed(ip_aux))
+		{
+			if (this.oct4 == ip_aux.oct4)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

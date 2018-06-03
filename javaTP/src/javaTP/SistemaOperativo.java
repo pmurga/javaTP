@@ -1,6 +1,6 @@
 package javaTP;
 
-public class SistemaOperativo implements iSO {
+public class SistemaOperativo implements Instalable {
 
 	protected String so_nombre;
 	protected IP so_ip;
@@ -29,6 +29,7 @@ public class SistemaOperativo implements iSO {
 		this.so_version = version;
 	}
 
+	/*
 	public PaqueteDeServicio generarPaqueteServicio()
 	{
 		
@@ -38,5 +39,5 @@ public class SistemaOperativo implements iSO {
 	{
 		
 	}
-	
+	*/
 }

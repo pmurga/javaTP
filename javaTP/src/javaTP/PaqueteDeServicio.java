@@ -1,7 +1,7 @@
 package javaTP;
 
 public class PaqueteDeServicio extends Paquete{
-	private TipoDeServicio tipo;	 
+	public TipoDeServicio tipo;	 
 	
 	public PaqueteDeServicio() {
 		super();
@@ -18,6 +18,9 @@ public class PaqueteDeServicio extends Paquete{
 		return es;
 		
 	}
-	
+	public PaqueteDeServicio(IP orig, IP dest, Integer t) {
+		super(orig,dest,t);
+		
+	}
 	
 }

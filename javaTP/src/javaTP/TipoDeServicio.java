@@ -2,6 +2,6 @@ package javaTP;
 
 public interface TipoDeServicio {
 	
-	public String getServicio();
+	public void procesarServicio(SistemaOperativo so, Paquete p);
 		
 }
