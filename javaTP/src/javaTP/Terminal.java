@@ -44,8 +44,22 @@ public abstract class Terminal extends Dispositivo
 	
 	public void enviar(Paquete p)
 	{
-		// la la
+		IP p2 = p.getIpDestino();
+		
+		for (IP host : ip_Host)
+		{
+			if (p2.esMismaRed(host))
+			{
+				
+			}else
+				{
+					
+				}
+			
+		}
+		
 	}
+
 	public void recibir(Paquete p)
 	{
 		//la la

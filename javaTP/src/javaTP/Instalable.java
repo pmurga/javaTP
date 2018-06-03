@@ -1,7 +1,7 @@
 package javaTP;
 
 //Sistema Operativo
-public interface iSO 
+public interface Instalable 
 {
 	
 	public String getSO();

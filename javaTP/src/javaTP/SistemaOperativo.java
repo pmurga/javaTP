@@ -28,4 +28,15 @@ public class SistemaOperativo implements iSO {
 		this.so_nombre = nombre;
 		this.so_version = version;
 	}
+
+	public PaqueteDeServicio generarPaqueteServicio()
+	{
+		
+	}
+	
+	public PaqueteDeRuteo generarPaqueteRuteo()
+	{
+		
+	}
+	
 }
