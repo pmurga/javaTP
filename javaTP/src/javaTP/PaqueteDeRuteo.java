@@ -11,13 +11,6 @@ public class PaqueteDeRuteo extends Paquete{
 		cont = c;
 	}
 	
-	@Override
-	public boolean esMismaRed(IP dest) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public void procesar() {
-		//...
-	}
+	
 	
 }

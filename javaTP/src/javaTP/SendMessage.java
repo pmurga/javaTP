@@ -13,10 +13,6 @@ public class SendMessage implements TipoDeServicio{
 	}
 
 
-	@Override
-	public void procesarServicio(SistemaOperativo so, Paquete p) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

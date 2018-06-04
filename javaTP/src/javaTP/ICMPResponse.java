@@ -16,12 +16,7 @@ public class ICMPResponse implements TipoDeServicio{
 	}
 	
 	public ICMPResponse(Date t) {
-		
 		timestamp = t;
 	}
-	@Override
-	public void procesarServicio(SistemaOperativo so, Paquete p) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

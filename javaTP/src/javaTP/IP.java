@@ -57,5 +57,8 @@ public class IP extends DirRed{
 		}
 		return false;
 	}
-	
+	@Override
+	public String toString() {
+		return "IP: "+oct1+"."+oct2+"."+oct3+"."+oct4;
+	}
 }

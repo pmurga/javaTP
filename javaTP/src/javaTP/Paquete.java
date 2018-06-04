@@ -42,7 +42,7 @@ package javaTP;
 			ttl = t;
 		}
 		
-		public abstract void procesar();
-		public abstract boolean esMismaRed(IP dest);
+		//public abstract void procesar();
+		public boolean esMismaRed(IP dest){return ipDestino.esMismaRed(dest);}
 		
 	}

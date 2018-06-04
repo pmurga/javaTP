@@ -8,16 +8,9 @@ public class PaqueteDeServicio extends Paquete{
 		
 	}
 	
-	public void procesar() {
-		//...
-	}
 	
-	public boolean esMismaRed(IP p) {
-		
-		boolean es = ipDestino.esMismaRed(p);
-		return es;
-		
-	}
+	public boolean esMismaRed(IP p) {return ipDestino.esMismaRed(p);}
+	
 	public PaqueteDeServicio(IP orig, IP dest, Integer t) {
 		super(orig,dest,t);
 		
