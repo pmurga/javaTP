@@ -1,5 +1,7 @@
 package javaTP;
 
+import java.util.Optional;
+
 public abstract class Terminal extends Dispositivo
 {
 	protected IP[] ip_Host;
@@ -87,7 +89,18 @@ public abstract class Terminal extends Dispositivo
 				//validar si la ip de destino del paquete pertenece a la misma red que la ip donde estoy parado
 				if (host.esMismaIP(ip_aux))
 				{
-					((PaqueteDeServicio) p).tipo.procesarServicio(this.sistema_Operativo, p);
+					//Optional<Paquete> pack = so.procesarPaquete(this, p);
+					//if (!pack.isEmpty()){
+					//
+					//enviamos esta verga
+					//
+					//enviar(pack.get());
+					//
+					//}else{
+					//
+					//no enviamos ninguna verga porque es uno de los packs que imprimen cosas
+					//
+					//}
 				}
 			}
 		}

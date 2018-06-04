@@ -1,6 +1,8 @@
 package javaTP;
 
-	public abstract class Paquete {
+import java.util.Optional;
+
+public abstract class Paquete {
 		
 		protected IP ipDestino;
 		protected IP ipOrigen;
@@ -42,7 +44,7 @@ package javaTP;
 			ttl = t;
 		}
 		
-		//public abstract void procesar();
+		public abstract Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so);
 		public boolean esMismaRed(IP dest){return ipDestino.esMismaRed(dest);}
 		
 	}
