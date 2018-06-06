@@ -3,32 +3,21 @@ package javaTP;
 import java.util.Optional;
 
 public class SendMessage implements TipoDeServicio{
-	private SistemaOperativo so;
-	//private Optional< Arraylist[] > Tabla_de_Ruteo; ¿Armar optional para cuando no es un Router?
-	
-
-
-	public SendMessage() {
-		
+	private String msg;
+	public SendMessage() {}
+	public String getMsg() {
+		return msg;
 	}
-	public SendMessage(SistemaOperativo orig) {
-		so = orig;
-		
-		
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	public void agregarMsg(String s) {
+		msg = msg + s;
 	}
 	@Override
 	public Optional<Paquete> procesarServicio(Dispositivo d, SistemaOperativo so, Paquete p) {
 		Optional<Paquete> pack = Optional.empty();
-		//imprimir msg
-		System.out.println(so.toString());
-		//if (!Tabla_de_Ruteo.isEmpty()){
-		//System.out.println(Tabla_de_Ruteo.toString);
-		//}
-		
+		System.out.println(msg);
 		return pack;
 	}
-
-
-	
-
 }
