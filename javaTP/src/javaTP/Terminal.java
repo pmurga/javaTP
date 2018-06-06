@@ -21,6 +21,9 @@ public abstract class Terminal extends Dispositivo
 		this.conectados = new Conectable[nroPuertos];
 	}
 	
+	public IP[] getIP_Host() {
+		return ip_Host;
+	}
 	@Override
 	public boolean conectar(Conectable d2)
 	{
@@ -46,35 +49,7 @@ public abstract class Terminal extends Dispositivo
 	
 	public void enviar(Paquete p)
 	{
-		IP ip_aux = p.getIpDestino();
-		
-		if (p instanceof PaqueteDeServicio)
-		{
-			//verifico para cada ip asignada a mi host
-			for (IP host : ip_Host)
-			{
-				//validar si la ip de destino del paquete pertenece a la misma red que la ip donde estoy parado
-				if (ip_aux.esMismaRed(host))
-				{
-					for (Conectable conectado : conectados)
-					{
-						//enviar paquete a dispositivo conectado a interfaz de la terminal
-						conectado.recibir(((PaqueteDeServicio) p));
-					}	
-				}else
-					{
-						//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
-						PaqueteDeRuteo pr = new PaqueteDeRuteo((PaqueteDeServicio) p );
-						pr.setIpDestino(this.default_Gateway);
-						
-						for (Conectable conectado : conectados)
-						{
-							//enviar paquete a dispositivo conectado a defaultGateway
-							conectado.recibir(((PaqueteDeServicio) p));
-						}	
-					}
-			}
-		}
+		this.sistema_Operativo.enviarPaquete(p, this);	
 	}
 	
 	public void recibir(Paquete p)

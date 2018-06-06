@@ -49,6 +49,47 @@ public class SistemaOperativo implements Instalable {
 		return  p.procesar(d, this);
 		
 	}
+	
+	public void enviarPaquete(Paquete p, Conectable c)
+	{
+		if(c instanceof Terminal) 
+		{	
+			//si el paquete no es de servicio queda descartado - no es procesado
+			if (p instanceof PaqueteDeServicio)
+			{
+				IP ip_aux = p.getIpDestino();
+				IP[] hosts = ((Terminal)c).getIP_Host();
+				Conectable[] c_aux = ((Terminal) c).getConectados();
+			
+				//verifico para cada ip asignada a mi host
+				for (IP host : hosts)
+				{
+					//validar si la ip de destino del paquete pertenece a la misma red que la ip donde estoy parado
+					if (ip_aux.esMismaRed(host))
+					{
+						for (Conectable conectado : c_aux)
+						{
+							//enviar paquete a dispositivo conectado a interfaz de la terminal
+							conectado.recibir(p);
+						}	
+						
+					}else 
+						{
+							//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
+							PaqueteDeRuteo pr = new PaqueteDeRuteo(p);
+							pr.setIpDestino(((Terminal) c).getDefault_Gateway());
+							
+							for (Conectable conectado : c_aux)
+							{
+								//enviar paquete a dispositivo conectado a defaultGateway
+								conectado.recibir(p);
+							}	
+						}
+			
+				}
+			}
+		}
+	}
 
 	@Override
 	public String toString() {
