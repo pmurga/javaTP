@@ -5,9 +5,21 @@ import java.util.ArrayList;
 public class SistemaOperativoRouter extends SistemaOperativo {
 	private IP[] ips;
 	private DirRed[] TablaRuteo;
+	private int cantRutas;
 	
 	public SistemaOperativoRouter() {
 		
+	}
+	
+	public void addDirRed(DirRed dir_red) {
+		//validar que la dir_red sea valida
+		if(dir_red.esRedValida()) {
+			//verificar que haya espacio en la tabla
+			if ((this.hayEspacioTabla())) {
+				int pos = this.getEspacioLibre();
+				this.TablaRuteo[pos] = dir_red;
+			}
+		}
 	}
 	
 	public void addIP(IP ip, Router r) {
@@ -33,6 +45,18 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 			}
 		}
 			
+	}
+	
+	public boolean hayEspacioTabla() {
+		boolean hay = false;
+		if (this.TablaRuteo.length > this.cantRutas) {
+			hay = true;
+		}
+		return hay;
+	}
+	
+	public int getEspacioLibre() {
+		return this.TablaRuteo.length;
 	}
 	
 	public boolean tieneIpLibres(Router r)
