@@ -46,8 +46,7 @@ public class SistemaOperativo implements Instalable {
 	//UNA VEZ QUE SE QUE EL PAQUETE A PROCESAR ES PARA MI, USO ESTE METODO
 	//Deberia ser utilizado en la instruccion "Recibir" del dispositivo (mas alla de si es un Router o una Terminal)
 	public Optional<Paquete> procesarPaquete(Dispositivo d, Paquete p){
-		return  p.procesar(d, this);
-		
+		return  p.procesar(d, this);	
 	}
 	
 	public void enviarPaquete(Paquete p, Conectable c)
@@ -71,8 +70,7 @@ public class SistemaOperativo implements Instalable {
 						{
 							//enviar paquete a dispositivo conectado a interfaz de la terminal
 							conectado.recibir(p);
-						}	
-						
+						}		
 					}else 
 						{
 							//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
@@ -85,12 +83,34 @@ public class SistemaOperativo implements Instalable {
 								conectado.recibir(p);
 							}	
 						}
-			
 				}
 			}
 		}
 	}
 
+	public void validarPaquete(Paquete p, Conectable c)
+	{
+		if (c instanceof Terminal) {
+			
+			//si Paquete es de tipo de ruteo no lo proceso - lo descarto
+			if (p instanceof PaqueteDeServicio)
+			{
+				IP ip_aux = p.getIpDestino();
+				IP[] hosts = ((Terminal)c).getIP_Host();
+				
+				//verifico para cada ip asignada a mi host
+				for (IP host : hosts)
+				{
+					//validar si la ip de destino del paquete es igual a alguna de las ip de mi host
+					if (ip_aux.esMismaIP(host))
+					{
+						this.procesarPaquete(((Dispositivo)c), p);
+					}
+				}
+			}
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "SistemaOperativo [so_nombre=" + so_nombre + ", so_ip=" + so_ip + ", so_version=" + so_version

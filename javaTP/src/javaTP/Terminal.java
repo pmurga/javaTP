@@ -54,32 +54,7 @@ public abstract class Terminal extends Dispositivo
 	
 	public void recibir(Paquete p)
 	{
-		IP ip_aux = p.getIpDestino();
-		
-		if (p instanceof PaqueteDeServicio)
-		{
-			//verifico para cada ip asignada a mi host
-			for (IP host : ip_Host)
-			{
-				//validar si la ip de destino del paquete pertenece a la misma red que la ip donde estoy parado
-				if (host.esMismaIP(ip_aux))
-				{
-					//Optional<Paquete> pack = so.procesarPaquete(this, p);
-					//if (!pack.isEmpty()){
-					//
-					//enviamos esta verga
-					//
-					//enviar(pack.get());
-					//
-					//}else{
-					//
-					//no enviamos ninguna verga porque es uno de los packs que imprimen cosas
-					//
-					//}
-				}
-			}
-		}
-	
+		this.sistema_Operativo.validarPaquete(p, this);
 	}
 	
 	public IP getDefault_Gateway() {
