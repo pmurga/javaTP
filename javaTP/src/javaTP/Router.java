@@ -4,15 +4,43 @@ import java.util.ArrayList;
 
 public class Router extends Dispositivo {
 
-	private Conectable[] conectados;
-	private int puertos;
+	protected Conectable[] conectados;
+	protected int puertos;
+	protected int default_int;
+	protected boolean tieneDefaultInt;
+	protected SistemaOperativoRouter sistema_operativo;
+	
+	public Router() {
+		this.tieneDefaultInt = false;
+		this.conectados = new Conectable[2];
+	}
+	
+	public Router(int size_interfaces) {
+		this.tieneDefaultInt = false;
+		this.conectados = new Conectable[size_interfaces];
+		validar_interfaces();
+	}
+	
+	private void validar_interfaces() {
+		
+		if (this.conectados.length < 2) {
+			//asignar 2 puertos como default
+			this.conectados = new Conectable[2];
+		}
+	}
+	
+	public void setDefaultInt(int i) {
+		
+		this.default_int = i;
+		this.tieneDefaultInt = true;
+	}
 	
 	@Override
 	public void enviar(Paquete p) {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	public void recibir(Paquete p) {
 		// TODO Auto-generated method stub

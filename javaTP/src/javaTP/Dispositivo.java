@@ -1,6 +1,5 @@
 package javaTP;
 
-
 public abstract class Dispositivo implements Conectable
 {
 	// cantidad de puertos que va a tener el Dispositivo
@@ -16,6 +15,9 @@ public abstract class Dispositivo implements Conectable
 		return conectados;
 	}
 	
+	public Dispositivo getDispositivo(){	
+		return this;	
+	}
 	public boolean tienePuertosLibres()
 	{
 		if (this.conectados.length < this.nroPuertos)
