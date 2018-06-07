@@ -2,8 +2,8 @@ package javaTP;
 
 import java.util.Optional;
 
-public class PaqueteDeServicio extends Paquete{
-	public TipoDeServicio tipo;	 
+public abstract class PaqueteDeServicio extends Paquete{
+	//public TipoDeServicio tipo;	 
 	
 	public PaqueteDeServicio() {
 		super();
@@ -18,7 +18,7 @@ public class PaqueteDeServicio extends Paquete{
 		
 	}
 	
-
+/*
 	public TipoDeServicio getTipo() {
 		return tipo;
 	}
@@ -28,11 +28,8 @@ public class PaqueteDeServicio extends Paquete{
 		this.tipo = tipo;
 	}
 
-
+*/
 	@Override
-	public Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so) {
-		return tipo.procesarServicio(d,so,this);
-		
-	}
+	public abstract Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so);
 	
 }
