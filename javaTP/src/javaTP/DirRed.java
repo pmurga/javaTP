@@ -35,4 +35,12 @@ public abstract class DirRed {
 		oct2 = n2;
 		oct3 = n3;
 	}
+	
+	public boolean esRedValida() {
+		boolean es = false;
+		if (this.oct1 >= 0) {
+			es = true;
+		}
+			return es;
+	}
 }
