@@ -36,10 +36,11 @@ public class PaqueteDeRuteo extends Paquete{
 						}else {
 							//enviar SendMessage
 							//Posible punto para exception
-							sm = new PaqueteDeServicio(so.getIPHost(), cont.getIpOrigen(), so.default_ttl);
-							SendMessage sm_tipo = new SendMessage();
+							sm = new SendMessage(so.getIPHost(), cont.getIpOrigen(), so.default_ttl, "Este equipo no posee una salida valida, mensaje rechazado");
+							/*SendMessage sm_tipo = new SendMessage();
 							sm_tipo.setMsg("Este equipo no posee una salida valida, mensaje rechazado");
 							((PaqueteDeServicio)sm).tipo = sm_tipo;
+							*/
 						}
 					}
 				}
