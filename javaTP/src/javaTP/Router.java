@@ -6,8 +6,7 @@ public class Router extends Dispositivo {
 
 	private Conectable[] conectados;
 	private int puertos;
-	private Ruta[] TablaRuteo;
-
+	
 	@Override
 	public void enviar(Paquete p) {
 		// TODO Auto-generated method stub
