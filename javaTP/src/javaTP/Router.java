@@ -1,5 +1,7 @@
 package javaTP;
 
+import java.util.Optional;
+
 //import java.util.ArrayList;
 
 public class Router extends Dispositivo {
@@ -43,7 +45,12 @@ public class Router extends Dispositivo {
 	
 	@Override
 	public void recibir(Paquete p) {
-		// TODO Auto-generated method stub
+		// TODO Done.
+		Optional<Paquete> pack = Optional.empty();
+		pack = sistema_operativo.procesarPaquete(this, p);
+		if (pack.isPresent()) {
+			//sistema_operativo.enviarPaquete(pack.get(), Conectable?DeberiamosPonerElEquipoQueRecibeElPaquete);
+		}
 
 	}
 
