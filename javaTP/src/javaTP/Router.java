@@ -1,6 +1,6 @@
 package javaTP;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class Router extends Dispositivo {
 
@@ -70,18 +70,19 @@ public class Router extends Dispositivo {
 	}
 
 	public boolean pertenece_IP_a_Tabla(IP ipDestino) {
-		// TODO Auto-generated method stub
+		// TODO Esto deberia revisar la tabla + las ip que estan en el SO y devolver true o false segun corresponda
 		return false;
 	}
 
 	public boolean existe_Interfaz_Defautl() {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO Nothing. Done.
+		return tieneDefaultInt;
 	}
 
 	public IP get_IP_from_Default_Interface() {
-		// TODO Auto-generated method stub
+		// TODO esto deberia dar la ip asociada al default interface.
 		return null;
 	}
+	
 
 }

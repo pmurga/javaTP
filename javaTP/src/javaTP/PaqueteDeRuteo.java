@@ -20,7 +20,7 @@ public class PaqueteDeRuteo extends Paquete {
 		// Valido que el paquete de ruteo este en un Router. Caso contrario, descarto,
 		// devolviendo un Empty.
 		if (d instanceof Router) {
-			Paquete sm = Null();
+			Paquete sm;
 			// Compruebo que el paquete de ruteo sea para el router
 			if (so.so_ip.equals(this.ipDestino)) {
 				this.ttl--;
@@ -43,25 +43,24 @@ public class PaqueteDeRuteo extends Paquete {
 							// Posible punto para exception
 							sm = new SendMessage(so.getIPHost(), cont.getIpOrigen(), so.default_ttl,
 									"Este equipo no posee una salida valida, mensaje rechazado");
-							
 						}
 					}
+					Optional<Paquete> pack = Optional.of(sm);
+					return pack;
+				} else {
+					// Se descarta el paquete, ya que el paquete no tiene TTL.
+					return Optional.empty();
 				}
-
-				Optional<Paquete> pack = Optional.of(sm);
-				return pack;
 			} else {
+				// Se descarta el paquete, ya que el paquete no estaba dirigido hacia este
+				// equipo.
 				return Optional.empty();
 			}
 		} else {
 			// Se descarta el paquete, ya que terminales no procesan paquetes de ruteo.
 			return Optional.empty();
 		}
-	}
 
-	private Paquete Null() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
