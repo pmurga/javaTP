@@ -3,7 +3,7 @@ package javaTP;
 import java.util.Optional;
 
 public abstract class PaqueteDeServicio extends Paquete {
-	// public TipoDeServicio tipo;
+
 
 	public PaqueteDeServicio() {
 		super();

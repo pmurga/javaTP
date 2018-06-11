@@ -6,7 +6,7 @@ public abstract class Terminal extends Dispositivo
 {
 	protected IP[] ip_Host;
 	protected IP default_Gateway;
-	protected SistemaOperativo sistema_Operativo; 
+	protected SistemaOperativoTerminal sistema_Operativo; 
 	
 	
 	//permitir al usuario instalar un SO de su preferencia - por defecto los dispositivos no tendran un SO instalado (?)

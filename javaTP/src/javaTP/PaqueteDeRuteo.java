@@ -14,7 +14,7 @@ public class PaqueteDeRuteo extends Paquete {
 		super();
 		cont = c;
 	}
-
+/*
 	@Override
 	public Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so) {
 		// Valido que el paquete de ruteo este en un Router. Caso contrario, descarto,
@@ -22,10 +22,11 @@ public class PaqueteDeRuteo extends Paquete {
 		if (d instanceof Router) {
 			Paquete sm;
 			// Compruebo que el paquete de ruteo sea para el router
+			// Compruebo que el paquete tenga Time To Live
 			if (so.so_ip.equals(this.ipDestino)) {
-				this.ttl--;
-				// Compruebo que el paquete tenga Time To Live
+				
 				if (ttl > 0) {
+					this.ttl--;
 					// Compruebo si el paquete dentro del paquete de ruteo esta direccionado hacia
 					// algunas de las ip en mi tabla
 					if (((Router) d).pertenece_IP_a_Tabla(cont.getIpDestino())) {
@@ -62,5 +63,5 @@ public class PaqueteDeRuteo extends Paquete {
 		}
 
 	}
-
+*/
 }
