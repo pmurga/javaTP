@@ -16,7 +16,6 @@ public abstract class Terminal extends Dispositivo
 		this.nroPuertos = 1;
 		this.conectados = new Conectable[nroPuertos];
 	}
-	
 
 	@Override
 	public boolean conectar(Conectable d2)

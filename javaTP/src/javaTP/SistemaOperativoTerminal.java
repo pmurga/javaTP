@@ -56,7 +56,6 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 			}
 		}
 	}
-	//void asignarIP (Terminal t){}
 	public void enviarPaquete(Paquete p, Conectable c)
 	{
 		if(c instanceof Terminal) 
