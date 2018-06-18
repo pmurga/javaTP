@@ -80,7 +80,7 @@ public class Router extends Dispositivo {
 		return false;
 	}
 
-	public boolean existe_Interfaz_Defautl() {
+	public boolean existe_Interfaz_Default() {
 		// TODO Nothing. Done.
 		return tieneDefaultInt;
 	}

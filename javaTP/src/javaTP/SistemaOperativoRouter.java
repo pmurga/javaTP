@@ -2,10 +2,6 @@ package javaTP;
 
 import java.util.Optional;
 
-import javax.management.openmbean.OpenDataException;
-
-//import java.util.ArrayList;
-
 public class SistemaOperativoRouter extends SistemaOperativo {
 	private IP[] ips;
 	private DirRed[] TablaRuteo;
@@ -76,6 +72,16 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 	{
 		return r.getPuertoLibre();
 	}
+	public boolean pertenece_IP_a_Tabla(IP ip) {
+		
+		for (DirRed dr: TablaRuteo) {
+			
+			if (dr.esMismaRed(ip)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public void recibirPaquete(Dispositivo d, Paquete p) {
 		Optional<Paquete> pack = procesarPaquete(d,p);
 		if (pack.isPresent()) {
@@ -93,49 +99,54 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 		if (d instanceof Router) {
 			Paquete sm;
 			// Compruebo que el paquete de ruteo sea para el router
-			// Compruebo que el paquete tenga Time To Live
-			if (this.so_ip.equals(p.ipDestino)) {
+			for(IP i : ips) {
 				
-				if (p.ttl > 0) {
-					p.ttl--;
-					// Compruebo si el paquete dentro del paquete de ruteo esta direccionado hacia
-					// algunas de las ip en mi tabla
-					if (this.pertenece_IP_a_Tabla(((PaqueteDeRuteo)p).getCont().getIpDestino())) {
-						// enviar paquete al destino
-						sm = ((PaqueteDeRuteo)p).getCont();
-					} else {
-						if (((Router) d).existe_Interfaz_Defautl()) {
+				// si encuentro que ip destino del paquete es una ip asignada a mi router entonces..
+				// se asume que las ip asignadas a las interfaces de router son unicas
+				if (i.esMismaIP(p.ipDestino)) {
+					return procesarPaquete2(d, p, i);
+				}
+			}	
+		}
+		return pack;
+	}
+	
+	public Optional<Paquete> procesarPaquete2(Dispositivo d , Paquete p, IP i)
+	{
+			Paquete sm;
+			Optional<Paquete> pack = Optional.empty();
+
+			// Compruebo que el paquete tenga Time To Live
+			if (p.ttl > 0) {
+				p.ttl--;
+				// Compruebo si el paquete dentro del paquete de ruteo esta direccionado hacia
+				// algunas de las ip en mi tabla
+				if (this.pertenece_IP_a_Tabla(((PaqueteDeRuteo)p).getCont().getIpDestino())) 
+				{
+					// extraigo el paquete de servicio del paquete de ruteo y lo envio al destino
+					sm = ((PaqueteDeRuteo)p).getCont();
+				} else {
+						if (((Router) d).existe_Interfaz_Default()) 
+						{
 							// enviar paquete de ruteo con cont adentro por default
 							sm = new PaqueteDeRuteo(((PaqueteDeRuteo)p).getCont());
 							sm.setIpDestino(((Router) d).get_IP_from_Default_Interface());
-							sm.setIpOrigen(getIPHost());
+							sm.setIpOrigen(i);
 							sm.setTtl(default_ttl);
 						} else {
-							// enviar SendMessage
+							// enviar SendMessage al origen del paquete que se esta procesando
 							// Posible punto para exception
-							sm = new SendMessage(getIPHost(), ((PaqueteDeRuteo)p).getCont().getIpOrigen(), default_ttl,
+							sm = new SendMessage(i, ((PaqueteDeRuteo)p).getCont().getIpOrigen(), default_ttl,
 									"Este equipo no posee una salida valida, mensaje rechazado");
 						}
 					}
-					pack = Optional.of(sm);
-					return pack;
-				} else {
-					// Se descarta el paquete, ya que el paquete no tiene TTL.
-					return Optional.empty();
-				}
+				pack = Optional.of(sm);
+				return pack;
 			} else {
-				// Se descarta el paquete, ya que el paquete no estaba dirigido hacia este
-				// equipo.
+				// Se descarta el paquete, ya que el paquete no tiene TTL.
 				return Optional.empty();
 			}
-		} else {
-			// Se descarta el paquete, ya que terminales no procesan paquetes de ruteo.
-			return Optional.empty();
-		}
-
-		return pack;
-		
 	}
-	
+		
 	
 }
