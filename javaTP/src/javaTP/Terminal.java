@@ -8,8 +8,7 @@ public abstract class Terminal extends Dispositivo
 	
 	//permitir al usuario instalar un SO de su preferencia - por defecto los dispositivos no tendran un SO instalado (?)
 	public abstract void instalar(SistemaOperativo SO);
-	public abstract String getSO();
-	public abstract void setIpHost(IP ip);
+	public abstract SistemaOperativoTerminal getSO();
 	
 	public Terminal()
 	{	

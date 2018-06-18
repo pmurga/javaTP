@@ -7,6 +7,10 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	protected IP[] ip_Host;
 	protected IP default_Gateway;
 	
+	public SistemaOperativoTerminal() {
+		IP[] ip_Host = new IP[1];
+	}
+	
 	public void instalar(String name, String ver, Terminal t) {
 		terminal = t;
 		instalar(name, ver);
