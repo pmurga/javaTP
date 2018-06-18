@@ -34,7 +34,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 			if (p instanceof PaqueteDeServicio)
 			{
 				IP ip_aux = p.getIpDestino();
-				IP[] hosts = ((Terminal)c).getIP_Host();
+				IP[] hosts = getIP_Host();
 				
 				//verifico para cada ip asignada a mi host
 				for (IP host : hosts)
@@ -61,7 +61,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 			if (p instanceof PaqueteDeServicio)
 			{
 				IP ip_aux = p.getIpDestino();
-				IP[] hosts = ((Terminal)c).getIP_Host();
+				IP[] hosts = getIP_Host();
 				Conectable[] c_aux = ((Terminal) c).getConectados();
 			
 				//verifico para cada ip asignada a mi host
@@ -79,7 +79,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 						{
 							//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
 							PaqueteDeRuteo pr = new PaqueteDeRuteo(p);
-							pr.setIpDestino(((Terminal) c).getDefault_Gateway());
+							pr.setIpDestino(getDefault_Gateway());
 							
 							for (Conectable conectado : c_aux)
 							{
