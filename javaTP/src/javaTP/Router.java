@@ -39,8 +39,9 @@ public class Router extends Dispositivo {
 	
 	@Override
 	public void enviar(Paquete p) {
-		// TODO Auto-generated method stub
-
+		for(Conectable conectado: conectados) {
+			conectado.recibir(p);
+		}
 	}
 	
 	@Override
