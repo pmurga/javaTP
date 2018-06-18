@@ -43,8 +43,5 @@ public abstract class Paquete {
 			ipDestino = dest;
 			ttl = t;
 		}
-		
-		
-		public boolean esMismaRed(IP dest){return ipDestino.esMismaRed(dest);}
-		
+				
 	}

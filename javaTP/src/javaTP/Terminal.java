@@ -1,11 +1,8 @@
 package javaTP;
 
-import java.util.Optional;
-
 public abstract class Terminal extends Dispositivo
 {
-	protected IP[] ip_Host;
-	protected IP default_Gateway;
+	
 	protected SistemaOperativoTerminal sistema_Operativo; 
 	
 	
@@ -21,9 +18,7 @@ public abstract class Terminal extends Dispositivo
 		this.conectados = new Conectable[nroPuertos];
 	}
 	
-	public IP[] getIP_Host() {
-		return ip_Host;
-	}
+
 	@Override
 	public boolean conectar(Conectable d2)
 	{
@@ -56,16 +51,9 @@ public abstract class Terminal extends Dispositivo
 	{
 		this.sistema_Operativo.validarPaquete(p, this);
 	}
-	
-	public IP getDefault_Gateway() {
-		return default_Gateway;
-	}
-	public void setDefault_Gateway(IP default_Gateway) {
-		this.default_Gateway = default_Gateway;
-	}
 	public void instalar(SistemaOperativoTerminal so, String name,String ver) {
 		
-		so.instalarS(name, ver, this);
+		so.instalar(name, ver, this);
 		
 	}
 }

@@ -1,7 +1,5 @@
 package javaTP;
 
-import java.util.Optional;
-
 public class SistemaOperativo implements Instalable {
 
 	protected String so_nombre;
@@ -9,7 +7,6 @@ public class SistemaOperativo implements Instalable {
 	protected Integer default_ttl;
 	
 	public SistemaOperativo() {
-		// TODO Auto-generated constructor stub
 		default_ttl = 255;
 	}
 	//return del nombre del Sistema Operativo
@@ -28,16 +25,6 @@ public class SistemaOperativo implements Instalable {
 		this.so_nombre = nombre;
 		this.so_version = version;
 	}
-
-	/*
-	//UNA VEZ QUE SE QUE EL PAQUETE A PROCESAR ES PARA MI, USO ESTE METODO
-	//Deberia ser utilizado en la instruccion "Recibir" del dispositivo (mas alla de si es un Router o una Terminal)
-	public Optional<Paquete> procesarPaquete(Dispositivo d, Paquete p){
-		return  p.procesar(d, this);	
-	}
-	*/
-	
-	
 	
 	@Override
 	public String toString() {

@@ -4,11 +4,26 @@ import java.util.Optional;
 
 public class SistemaOperativoTerminal extends SistemaOperativo {
 	private Terminal terminal;
+	protected IP[] ip_Host;
+	protected IP default_Gateway;
 	
-	public void instalarS(String name, String ver, Terminal t) {
+	public void instalar(String name, String ver, Terminal t) {
 		terminal = t;
 		instalar(name, ver);
 		
+	}
+	
+	public void setIPHost(IP ip) {
+		this.ip_Host[0] = ip;
+	}
+	public IP[] getIP_Host() {
+		return ip_Host;
+	}
+	public IP getDefault_Gateway() {
+		return default_Gateway;
+	}
+	public void setDefault_Gateway(IP default_Gateway) {
+		this.default_Gateway = default_Gateway;
 	}
 	
 	public void validarPaquete(Paquete p, Conectable c)
