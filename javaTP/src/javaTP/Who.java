@@ -22,7 +22,7 @@ public class Who extends PaqueteDeServicio {
 				
 				if (d instanceof Router) {
 					//agregar la tabla de ruteo
-					sm.agregarMsg(((Router)d).Tabla_de_Ruteo.toString());
+					//sm.agregarMsg(((Router)d).Tabla_de_Ruteo.toString());
 				}
 				Optional<Paquete> pack = Optional.of(sm);
 				return pack;

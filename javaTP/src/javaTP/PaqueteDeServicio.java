@@ -19,7 +19,7 @@ public abstract class PaqueteDeServicio extends Paquete {
 
 	}
 
-	@Override
+	
 	public abstract Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so);
 
 }

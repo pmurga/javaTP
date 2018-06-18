@@ -77,7 +77,7 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 		return r.getPuertoLibre();
 	}
 	public void recibirPaquete(Dispositivo d, Paquete p) {
-		Optional<Paquete> pack = procesarPaquete(p);
+		Optional<Paquete> pack = procesarPaquete(d,p);
 		if (pack.isPresent()) {
 			enviarPaquete(d,pack.get());
 		}
@@ -88,7 +88,7 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 		d.enviar(p);
 	}
 	
-	public Optional<Paquete> procesarPaquete(Paquete p){
+	public Optional<Paquete> procesarPaquete(Dispositivo d, Paquete p){
 		Optional<Paquete> pack = Optional.empty();
 		if (d instanceof Router) {
 			Paquete sm;
@@ -100,24 +100,24 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 					p.ttl--;
 					// Compruebo si el paquete dentro del paquete de ruteo esta direccionado hacia
 					// algunas de las ip en mi tabla
-					if (this.pertenece_IP_a_Tabla(((PaqueteDeRuteo)p).cont.getIpDestino())) {
+					if (this.pertenece_IP_a_Tabla(((PaqueteDeRuteo)p).getCont().getIpDestino())) {
 						// enviar paquete al destino
-						sm = cont;
+						sm = ((PaqueteDeRuteo)p).getCont();
 					} else {
 						if (((Router) d).existe_Interfaz_Defautl()) {
 							// enviar paquete de ruteo con cont adentro por default
-							sm = new PaqueteDeRuteo(cont);
+							sm = new PaqueteDeRuteo(((PaqueteDeRuteo)p).getCont());
 							sm.setIpDestino(((Router) d).get_IP_from_Default_Interface());
-							sm.setIpOrigen(so.getIPHost());
-							sm.setTtl(so.default_ttl);
+							sm.setIpOrigen(getIPHost());
+							sm.setTtl(default_ttl);
 						} else {
 							// enviar SendMessage
 							// Posible punto para exception
-							sm = new SendMessage(so.getIPHost(), cont.getIpOrigen(), so.default_ttl,
+							sm = new SendMessage(getIPHost(), ((PaqueteDeRuteo)p).getCont().getIpOrigen(), default_ttl,
 									"Este equipo no posee una salida valida, mensaje rechazado");
 						}
 					}
-					Optional<Paquete> pack = Optional.of(sm);
+					pack = Optional.of(sm);
 					return pack;
 				} else {
 					// Se descarta el paquete, ya que el paquete no tiene TTL.

@@ -3,6 +3,13 @@ package javaTP;
 import java.util.Optional;
 
 public class SistemaOperativoTerminal extends SistemaOperativo {
+	private Terminal terminal;
+	
+	public void instalarS(String name, String ver, Terminal t) {
+		terminal = t;
+		instalar(name, ver);
+		
+	}
 	
 	public void validarPaquete(Paquete p, Conectable c)
 	{
@@ -20,16 +27,17 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 					//validar si la ip de destino del paquete es igual a alguna de las ip de mi host
 					if (ip_aux.esMismaIP(host))
 					{
-						Optional<Paquete> pack = this.procesarPaquete(((Dispositivo)c), p);
+						Optional<Paquete> pack = ((PaqueteDeServicio)p).procesar(((Dispositivo) c), this);
 						if(pack.isPresent()) {		
 						enviarPaquete(pack.get(), c);
+						//break para el for o validar que no suceda mas de 1 vez
 						}
 					}
 				}
 			}
 		}
 	}
-	
+	//void asignarIP (Terminal t){}
 	public void enviarPaquete(Paquete p, Conectable c)
 	{
 		if(c instanceof Terminal) 

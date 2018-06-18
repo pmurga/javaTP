@@ -44,7 +44,7 @@ public abstract class Paquete {
 			ttl = t;
 		}
 		
-		public abstract Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so);
+		
 		public boolean esMismaRed(IP dest){return ipDestino.esMismaRed(dest);}
 		
 	}

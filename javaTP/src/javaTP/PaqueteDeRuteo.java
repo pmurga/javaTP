@@ -1,9 +1,13 @@
 package javaTP;
 
-import java.util.Optional;
+
 
 public class PaqueteDeRuteo extends Paquete {
 	private Paquete cont;
+	
+	public Paquete getCont() {
+		return cont;
+	}
 
 	public PaqueteDeRuteo() {
 		super();

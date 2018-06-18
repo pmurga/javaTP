@@ -63,5 +63,9 @@ public abstract class Terminal extends Dispositivo
 	public void setDefault_Gateway(IP default_Gateway) {
 		this.default_Gateway = default_Gateway;
 	}
-	
+	public void instalar(SistemaOperativoTerminal so, String name,String ver) {
+		
+		so.instalarS(name, ver, this);
+		
+	}
 }
