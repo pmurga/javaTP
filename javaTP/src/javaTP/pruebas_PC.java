@@ -2,6 +2,11 @@ package javaTP;
 
 public class PC extends Terminal {
 
+	
+	public PC() {
+		
+		
+	}
 	@Override
 	public void instalar(SistemaOperativo SO) {
 		// TODO Auto-generated method stub

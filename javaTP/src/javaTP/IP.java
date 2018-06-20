@@ -52,7 +52,6 @@ public class IP extends DirRed{
 		return "IP: "+oct1+"."+oct2+"."+oct3+"."+oct4;
 	}
 	public void fromString(String msg) throws IllegalArgumentException, IPInvalidaException  {
-		// TODO Auto-generated method stub
 		if (msg.contains(".")) {
 		    // Split it.
 			String[] parts = msg.split(".", 4);

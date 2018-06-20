@@ -35,7 +35,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	}
 	
 	public void configurarIP() {
-		System.out.println("Inserte la IP de este Equipo, separando los Octetos por puntos.");
+		System.out.println("Inserte la IP de este Equipo, separando los Octetos por puntos:");
 		String msg;
 		IP i = new IP();
 		do {
