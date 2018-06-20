@@ -50,7 +50,7 @@ public abstract class Terminal extends Dispositivo
 		this.sistema_Operativo.validarPaquete(p, this);
 	}
 	public void instalar(SistemaOperativoTerminal so, String name,String ver) {
-		
+		sistema_Operativo = so;
 		so.instalar(name, ver, this);
 		
 	}

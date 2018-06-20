@@ -1,14 +1,18 @@
 package javaTP;
 
 import java.util.Optional;
+import java.util.Scanner;
 
 public class SistemaOperativoTerminal extends SistemaOperativo {
 	private Terminal terminal;
 	protected IP[] ip_Host;
 	protected IP default_Gateway;
+	private Scanner teclado;
+	//private System	consola;
 	
 	public SistemaOperativoTerminal() {
 		IP[] ip_Host = new IP[1];
+		teclado = new Scanner(System.in);
 	}
 	
 	public void instalar(String name, String ver, Terminal t) {
@@ -28,6 +32,21 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	}
 	public void setDefault_Gateway(IP default_Gateway) {
 		this.default_Gateway = default_Gateway;
+	}
+	
+	public void configurarIP() {
+		System.out.println("Inserte la IP de este Equipo, separando los Octetos por puntos.");
+		String msg;
+		IP i = new IP();
+		do {
+		msg = teclado.nextLine();
+		try {
+			i.fromString(msg);
+		} catch (IllegalArgumentException | IPInvalidaException e) {
+			e.printStackTrace();
+		}
+		}while (!i.esValida());
+		setIPHost(i);
 	}
 	
 	public void validarPaquete(Paquete p, Conectable c)

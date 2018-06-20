@@ -51,4 +51,27 @@ public class IP extends DirRed{
 	public String toString() {
 		return "IP: "+oct1+"."+oct2+"."+oct3+"."+oct4;
 	}
+	public void fromString(String msg) throws IllegalArgumentException, IPInvalidaException  {
+		// TODO Auto-generated method stub
+		if (msg.contains(".")) {
+		    // Split it.
+			String[] parts = msg.split(".", 4);
+			oct1 = Integer.parseInt(parts[0]);
+			oct2 = Integer.parseInt(parts[1]);
+			oct3 = Integer.parseInt(parts[2]);
+			oct4 = Integer.parseInt(parts[3]);
+			if (!esValida() ){throw new IPInvalidaException();} 
+			
+		} else {
+		    throw new IllegalArgumentException("String " + msg + " does not contain .");
+		}
+		
+	}
+	public boolean esValida() {
+		boolean es = false;
+		if((oct1 < 255 || oct1 > 0)&&(oct2 < 255 || oct2 > 0)&&(oct3 < 255 || oct3 > 0)&&(oct4 < 255 || oct4 > 0)) {
+			es = true;
+		}
+		return es;
+	}
 }
