@@ -1,9 +1,9 @@
 package javaTP;
 
-public class PC extends Terminal {
+public class pruebas_PC extends Terminal {
 
 	
-	public PC() {
+	public pruebas_PC() {
 		
 		
 	}
@@ -16,7 +16,7 @@ public class PC extends Terminal {
 	@Override
 	public SistemaOperativoTerminal getSO() {
 		// TODO Auto-generated method stub
-		return sistema_Operativo;
+		return sistema_operativo;
 	}
 
 }

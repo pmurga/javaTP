@@ -38,9 +38,13 @@ public abstract class DirRed {
 	
 	public boolean esRedValida() {
 		boolean es = false;
-		if (this.oct1 >= 0) {
-			es = true;
-		}
+		if (oct1 >= 0) {
+			if(oct2 >= 0) {
+				if (oct3 >= 0) {
+					es = true;
+				}
+			}
+		 }
 			return es;
 	}
 	public boolean esMismaRed(IP dest) {

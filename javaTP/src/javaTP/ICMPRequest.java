@@ -10,8 +10,8 @@ public class ICMPRequest extends PaqueteDeServicio {
 
 	@Override
 	public Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so) {
-		// Envía al equipo que originó el paquete un nuevo paquete de tipo ICMPResponse.
-		ICMPResponse sm = new ICMPResponse(getIpOrigen());
+		// Envï¿½a al equipo que originï¿½ el paquete un nuevo paquete de tipo ICMPResponse.
+		ICMPResponse sm = new ICMPResponse(getIpDestino());
 		sm.setIpOrigen(getIpDestino());
 		sm.setIpDestino(getIpOrigen());
 		sm.setTtl(so.default_ttl);

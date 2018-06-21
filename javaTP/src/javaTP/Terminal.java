@@ -3,7 +3,7 @@ package javaTP;
 public abstract class Terminal extends Dispositivo
 {
 	
-	protected SistemaOperativoTerminal sistema_Operativo; 
+	protected SistemaOperativoTerminal sistema_operativo; 
 	
 	
 	//permitir al usuario instalar un SO de su preferencia - por defecto los dispositivos no tendran un SO instalado (?)
@@ -18,8 +18,9 @@ public abstract class Terminal extends Dispositivo
 	}
 
 	@Override
-	public boolean conectar(Conectable d2)
+	public boolean conectar (Conectable d2)
 	{
+		
 		// validar que this no es mismo dispositivo que d2 (para que no se conecte a si mismo)
 		if (!(this.equals(d2)))
 		{
@@ -30,28 +31,41 @@ public abstract class Terminal extends Dispositivo
 				if (((Dispositivo) d2).tienePuertosLibres())
 				{
 						int p1 = this.getPuertoLibre();
-						this.conectados[p1] = d2;
-						int p2 = ((Dispositivo) d2).getPuertoLibre();
-						((Dispositivo) d2).conectados[p2] = this;
-						return true;
+						
+						// getPuertoLibre retorna -1 si no encuentra un puerto libre
+						if (p1 != -1) {
+							
+							this.conectados[p1] = d2;
+							System.out.println(this + " conectado exitosamente a " + d2);
+
+							int p2 = ((Dispositivo) d2).getPuertoLibre();
+							if (p2 != -1) {
+								
+								((Dispositivo) d2).conectados[p2] = this;
+								System.out.println(d2 + " conectado exitosamente a " + this);
+								return true;
+							}
+						}
+					
 				}	
 			}
 		}
+		System.out.println("No se pudo conectar a " + d2);
 		return false;
 	}
 	
 	public void enviar(Paquete p)
 	{
-		this.sistema_Operativo.enviarPaquete(p, this);	
+		this.sistema_operativo.enviarPaquete(p, this);	
 	}
 	
 	public void recibir(Paquete p)
 	{
-		this.sistema_Operativo.validarPaquete(p, this);
+		this.sistema_operativo.validarPaquete(p, this);
 	}
 	public void instalar(SistemaOperativoTerminal so, String name,String ver) {
-		sistema_Operativo = so;
-		so.instalar(name, ver, this);
+		sistema_operativo = so;
+		sistema_operativo.instalar(name, ver, this);
 		
 	}
 }

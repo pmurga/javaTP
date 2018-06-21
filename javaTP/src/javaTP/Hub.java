@@ -5,8 +5,10 @@ public abstract class Hub extends Dispositivo{
 	public void enviar(Paquete p) 
 	{
 		for(Conectable dispositivo : conectados) 
-		{
-			dispositivo.recibir(p);
+		{	
+			if (dispositivo != null) {
+				dispositivo.recibir(p);
+			}
 		}
 	}
 	public void recibir(Paquete p) 
@@ -28,13 +30,24 @@ public abstract class Hub extends Dispositivo{
 				if (((Dispositivo) d2).tienePuertosLibres())
 				{
 						int p1 = this.getPuertoLibre();
-						this.conectados[p1] = d2;
-						int p2 = ((Dispositivo) d2).getPuertoLibre();
-						((Dispositivo) d2).conectados[p2] = this;	//getconectados
-						return true;
+						// getPuertoLibre retorna -1 si no encuentra un puerto libre
+						if (p1 != -1) {
+							
+							this.conectados[p1] = d2;
+							System.out.println(this + " conectado exitosamente a " + d2);
+
+							int p2 = ((Dispositivo) d2).getPuertoLibre();
+							if (p2 != -1) {
+								
+								((Dispositivo) d2).conectados[p2] = this;
+								System.out.println(d2 + " conectado exitosamente a " + this);
+								return true;
+							}
+						}
 				}	
 			}
 		}
+		System.out.println("No se pudo conectar a " + d2);
 		return false;
 	}
 	

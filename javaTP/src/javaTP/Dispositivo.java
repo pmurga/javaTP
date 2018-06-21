@@ -20,15 +20,23 @@ public abstract class Dispositivo implements Conectable
 	}
 	public boolean tienePuertosLibres()
 	{
-		if (this.conectados.length < this.nroPuertos)
-		{
-			return true;
+		for(int x=0; x < this.conectados.length ; x++) {
+			if(this.conectados[x] == null) {
+				return true;
+			}
 		}
 		return false;
 	}
 	public int getPuertoLibre()
 	{
-		return this.conectados.length;
+		for(int x=0; x < this.conectados.length ; x++) {
+			if(this.conectados[x] == null) {
+				return x;
+			}
+		}
+		System.out.println("Error - No hay ningun puerto libre en el dispositivo");
+		return -1;
+	
 	}
 	
 }

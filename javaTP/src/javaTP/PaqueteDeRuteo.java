@@ -3,10 +3,13 @@ package javaTP;
 
 
 public class PaqueteDeRuteo extends Paquete {
-	private Paquete cont;
+	private Paquete container;
 	
-	public Paquete getCont() {
-		return cont;
+	public Paquete getContainer() {
+		return container;
+	}
+	public void setContainer(Paquete p) {
+		this.container = p;
 	}
 
 	public PaqueteDeRuteo() {
@@ -16,7 +19,7 @@ public class PaqueteDeRuteo extends Paquete {
 
 	public PaqueteDeRuteo(Paquete c) {
 		super();
-		cont = c;
+		container = c;
 	}
 /*
 	@Override

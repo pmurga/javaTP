@@ -20,11 +20,15 @@ public class IP extends DirRed{
 	
 	public boolean validar() {
 		es = false;
-		if (oct1 <= 0) {
-			if (oct4 != 0 && oct4 != 255) {
-				es = true;
+		if (oct1 >= 0) {
+			if(oct2 >= 0) {
+				if (oct3 >= 0) {
+					if (oct4 != 0 && oct4 != 255) {
+						es = true;
+					}
+				}
 			}
-		}
+		 }
 		return es;
 	}
 

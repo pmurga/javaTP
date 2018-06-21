@@ -25,7 +25,7 @@ public class ICMPResponse extends PaqueteDeServicio {
 	@Override
 	public Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so) {
 
-		System.out.println("Recibido ICMP desde: " + equip_orig.toString() + "TimeStamp: " + timestamp.toString());
+		System.out.println("Recibido ICMP desde: " + equip_orig.toString() + " - TimeStamp: " + timestamp.toString());
 
 		return Optional.empty();
 	}

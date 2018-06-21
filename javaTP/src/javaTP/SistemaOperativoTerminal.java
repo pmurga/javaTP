@@ -11,7 +11,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	//private System	consola;
 	
 	public SistemaOperativoTerminal() {
-		IP[] ip_Host = new IP[1];
+		ip_Host = new IP[1];
 		teclado = new Scanner(System.in);
 	}
 	
@@ -23,6 +23,9 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	
 	public void setIPHost(IP ip) {
 		this.ip_Host[0] = ip;
+		//set default gateway (automatico)
+		this.default_Gateway = new IP(ip.getOct1(),ip.getOct2(),ip.getOct3(),1);
+		System.out.println("!!!!!DG " + default_Gateway);
 	}
 	public IP[] getIP_Host() {
 		return ip_Host;
@@ -84,7 +87,8 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 			{
 				IP ip_aux = p.getIpDestino();
 				IP[] hosts = getIP_Host();
-				Conectable[] c_aux = ((Terminal) c).getConectados();
+				
+				Conectable[] c_aux = this.terminal.getConectados();
 			
 				//verifico para cada ip asignada a mi host
 				for (IP host : hosts)
@@ -100,7 +104,8 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 					}else 
 						{
 							//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
-							PaqueteDeRuteo pr = new PaqueteDeRuteo(p);
+							PaqueteDeRuteo pr = new PaqueteDeRuteo();
+							pr.setContainer(p);
 							pr.setIpDestino(getDefault_Gateway());
 							
 							for (Conectable conectado : c_aux)
