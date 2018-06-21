@@ -4,7 +4,7 @@ public class pruebas_main {
 
 	public static void main(String[] args) 
 	{
-		
+/*		
 		System.out.println("_________________");
 		System.out.println("CASO 1: Terminal <-> Terminal");
 		System.out.println("");
@@ -59,12 +59,12 @@ public class pruebas_main {
 		System.out.println("|-> Pc4");
 		System.out.println("");
 
-		
+	*/	
 		pruebas_PC pc3 = new pruebas_PC();
 		pruebas_PC pc4 = new pruebas_PC();
 		SistemaOperativoTerminal utunbu = new SistemaOperativoTerminal();
 		SistemaOperativoTerminal camOS = new SistemaOperativoTerminal();
-		
+	
 		IP ip3 = new IP(192, 168, 1, 30);		
 		System.out.println("PC3: " + pc3);
 		pc3.instalar(utunbu, "UTUNBU", "V16.04");
@@ -99,13 +99,13 @@ public class pruebas_main {
 		IP origen2 = pc3.getSO().getIP_Host()[0];
 		IP destino2 = pc4.getSO().getIP_Host()[0];	
 		
-		Paquete p2 = new ICMPRequest(origen2 ,destino2 , 50);
-		
+		//Paquete p2 = new ICMPRequest(origen2 ,destino2 , 50);
+	/*	
 		System.out.println("");
 		System.out.println(">>>Enviar ICMPRequest de Pc3 a Pc4");
 		pc3.getSO().enviarPaquete(p2, pc4);
 		
-		
+	*/	
 		System.out.println("_________________");
 		System.out.println("CASO 3 (envio de paquetes entre dos terminales de subnet distintas): ");
 		System.out.println("Router");
@@ -123,8 +123,8 @@ public class pruebas_main {
 		System.out.println(router2int.getSistema_operativo());
 		IP ipR1 = new IP(192,168,1,1);
 		IP ipR2 = new IP(10,1,1,1);
-		router2int.getSistema_operativo().setIP(ipR1, 0);
-		router2int.getSistema_operativo().setIP(ipR2, 1);
+		router2int.getSistema_operativo().setIP(ipR1, 1);
+		router2int.getSistema_operativo().setIP(ipR2, 0);
 		router2int.getSistema_operativo().mostrarIPs();
 		
 		DirRed dr_aux = new IP(192,168,1,0);
@@ -163,9 +163,14 @@ public class pruebas_main {
 		System.out.println("");
 		System.out.println(">>>Enviar ICMPRequest de Pc5 a Pc4");
 		System.out.println("");
-		pc5.getSO().enviarPaquete(p3, pc4);
+		//pc5.getSO().enviarPaquete(p3, pc4);
 	
+		IP destino4 = new IP(10,1,1,1);
+		Who p4 = new Who(origen3 , destino4 , 50);
+
+		pc5.getSO().enviarPaquete(p4, router2int); 
 		
+		pc5.conectar(pc3);
 		
 	}
 

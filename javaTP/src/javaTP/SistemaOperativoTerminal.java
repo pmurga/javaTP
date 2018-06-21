@@ -81,8 +81,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 	}
 	public void enviarPaquete(Paquete p, Conectable c)
 	{
-		if(c instanceof Terminal) 
-		{	
+			
 			//si el paquete no es de servicio queda descartado - no es procesado
 			if (p instanceof PaqueteDeServicio)
 			{
@@ -117,7 +116,7 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 						}
 				}
 			}
-		}
+		
 	}
 
 

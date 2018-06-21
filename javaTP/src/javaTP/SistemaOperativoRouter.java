@@ -246,20 +246,27 @@ public class SistemaOperativoRouter extends SistemaOperativo {
 		}
 	}
 	private void procesarWho(Dispositivo d, Paquete p) {
-		if (this.pertenece_IP_a_Tabla(((PaqueteDeRuteo)p).getContainer().getIpDestino())) 
+		
+		for (IP ip : ips)
 		{
-			// extraigo el paquete de servicio del paquete de ruteo
-			Who p_aux = new Who(p.getIpOrigen(),p.getIpDestino(),p.getTtl());
-			Optional<Paquete>pack = ((Who)p_aux).procesar(d, this);				
-			//obtengo puerto al que corresponde enviar segun Tabla de Ruteo
-			int i = getPuertoInterfaz(p.getIpDestino());
-			if (i != -1) {
-				//envio paquete al puerto correspondiente
-				if(pack.isPresent()) {
-					this.router.enviar(pack.get(), i);
-				}
-			}	
+		
+			if (ip.esMismaIP(p.getIpDestino()) ) 
+			{
+				// extraigo el paquete de servicio del paquete de ruteo
+				Who p_aux = new Who(p.getIpOrigen(),p.getIpDestino(),p.getTtl());
+				Optional<Paquete>pack = ((Who)p_aux).procesar(d, this);				
+				//obtengo puerto al que corresponde enviar segun Tabla de Ruteo
+				int i = getPuertoInterfaz(p.getIpDestino());
+				if (i != -1) {
+					//envio paquete al puerto correspondiente
+					if(pack.isPresent()) {
+						this.router.enviar(pack.get(), i);
+					}
+				}	
+			}
+			
 		}
+		
 	}
 	public void procesarPaquete(Dispositivo d , Paquete p)
 	{
