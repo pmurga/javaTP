@@ -2,8 +2,6 @@ package javaTP;
 
 import java.util.Optional;
 
-//import java.util.ArrayList;
-
 public class Router extends Dispositivo {
 	protected SistemaOperativoRouter sistema_operativo;
 	private int nro_puertos;
@@ -31,19 +29,19 @@ public class Router extends Dispositivo {
 		}
 	}
 	
-	@Override
+	@Override //enviar a todos los dispositivos conectados
 	public void enviar(Paquete p) {
 		for(Conectable conectado: conectados) {
 			conectado.recibir(p);
 		}
 	}
-
+	//enviar a un puerto especifico
+	public void enviar(Paquete p , int puerto){
+		conectados[puerto].recibir(p);
+	}
 	@Override
 	public void recibir(Paquete p) {
-		Optional<Paquete> pack = sistema_operativo.procesarPaquete(this, p);
-		if (pack.isPresent()) {
-			//sistema_operativo.enviarPaquete(pack.get(), Conectable?DeberiamosPonerElEquipoQueRecibeElPaquete);
-		}
+		this.sistema_operativo.recibirPaquete(this, p);
 	}
 
 	@Override
@@ -87,11 +85,6 @@ public class Router extends Dispositivo {
 
 	public SistemaOperativoRouter getSistema_operativo() {
 		return sistema_operativo;
-	}
-
-	public boolean pertenece_IP_a_Tabla(IP ipDestino) {
-		// TODO Esto deberia revisar la tabla + las ip que estan en el SO y devolver true o false segun corresponda
-		return false;
 	}
 
 }

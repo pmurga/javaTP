@@ -25,7 +25,6 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 		this.ip_Host[0] = ip;
 		//set default gateway (automatico)
 		this.default_Gateway = new IP(ip.getOct1(),ip.getOct2(),ip.getOct3(),1);
-		System.out.println("!!!!!DG " + default_Gateway);
 	}
 	public IP[] getIP_Host() {
 		return ip_Host;
@@ -61,7 +60,6 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 			{
 				IP ip_aux = p.getIpDestino();
 				IP[] hosts = getIP_Host();
-				
 				//verifico para cada ip asignada a mi host
 				for (IP host : hosts)
 				{
@@ -69,14 +67,17 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 					if (ip_aux.esMismaIP(host))
 					{
 						Optional<Paquete> pack = ((PaqueteDeServicio)p).procesar(((Dispositivo) c), this);
-						if(pack.isPresent()) {		
+						if(pack.isPresent()) {
 						enviarPaquete(pack.get(), c);
 						//break para el for o validar que no suceda mas de 1 vez
 						}
 					}
 				}
+			}else {
+				System.out.println("Paquete Descartado por " + this.ip_Host[0] + " por ser Paquete de Ruteo");
 			}
 		}
+		
 	}
 	public void enviarPaquete(Paquete p, Conectable c)
 	{
@@ -103,15 +104,15 @@ public class SistemaOperativoTerminal extends SistemaOperativo {
 						}		
 					}else 
 						{
-							//rearmar Paquete como PaqueteDeRuteo y asignar destino como defaultGateway de mi equipo
-							PaqueteDeRuteo pr = new PaqueteDeRuteo();
+							//rearmar Paquete como PaqueteDeRuteo
+							// origen: esta terminal - destino: defaultGateway de mi equipo
+							PaqueteDeRuteo pr = new PaqueteDeRuteo(this.ip_Host[0], getDefault_Gateway(), default_ttl);
 							pr.setContainer(p);
-							pr.setIpDestino(getDefault_Gateway());
 							
 							for (Conectable conectado : c_aux)
 							{
 								//enviar paquete a dispositivo conectado a defaultGateway
-								conectado.recibir(p);
+								conectado.recibir(pr);
 							}	
 						}
 				}

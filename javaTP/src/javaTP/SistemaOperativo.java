@@ -7,7 +7,7 @@ public class SistemaOperativo implements Instalable {
 	protected Integer default_ttl;
 	
 	public SistemaOperativo() {
-		default_ttl = 255;
+		default_ttl = 54;
 	}
 	//return del nombre del Sistema Operativo
 	@Override

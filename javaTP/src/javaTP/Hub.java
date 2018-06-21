@@ -13,9 +13,7 @@ public abstract class Hub extends Dispositivo{
 	}
 	public void recibir(Paquete p) 
 	{
-		
 		this.enviar(p);
-		
 	}
 	@Override
 	public boolean conectar(Conectable d2)

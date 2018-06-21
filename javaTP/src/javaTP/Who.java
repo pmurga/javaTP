@@ -11,8 +11,8 @@ public class Who extends PaqueteDeServicio {
 
 	@Override
 	public Optional<Paquete> procesar(Dispositivo d, SistemaOperativo so) {
-		//Envía al equipo que originó el paquete un nuevo paquete de tipo SendMessage que
-				//contenga información del Sistema Operativo local (nombre, versión, IP, etc) y
+		//Envï¿½a al equipo que originï¿½ el paquete un nuevo paquete de tipo SendMessage que
+				//contenga informaciï¿½n del Sistema Operativo local (nombre, versiï¿½n, IP, etc) y
 				//SendMessage sm_tipo = new SendMessage(so_local);
 				SendMessage sm = new SendMessage();
 				sm.setIpDestino(getIpOrigen());
@@ -21,8 +21,7 @@ public class Who extends PaqueteDeServicio {
 				sm.setMsg(so.toString());
 				
 				if (d instanceof Router) {
-					//agregar la tabla de ruteo
-					//sm.agregarMsg(((Router)d).Tabla_de_Ruteo.toString());
+					sm.agregarMsg(((Router)d).getSistema_operativo().toStringTablaRuteo());
 				}
 				Optional<Paquete> pack = Optional.of(sm);
 				return pack;

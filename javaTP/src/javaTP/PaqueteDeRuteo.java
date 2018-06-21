@@ -14,9 +14,10 @@ public class PaqueteDeRuteo extends Paquete {
 
 	public PaqueteDeRuteo() {
 		super();
-
 	}
-
+	public PaqueteDeRuteo(IP orig, IP dest, Integer t) {
+		super(orig,dest,t);
+	}
 	public PaqueteDeRuteo(Paquete c) {
 		super();
 		container = c;

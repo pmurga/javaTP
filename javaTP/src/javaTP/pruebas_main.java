@@ -126,6 +126,16 @@ public class pruebas_main {
 		router2int.getSistema_operativo().setIP(ipR1, 0);
 		router2int.getSistema_operativo().setIP(ipR2, 1);
 		router2int.getSistema_operativo().mostrarIPs();
+		
+		DirRed dr_aux = new IP(192,168,1,0);
+		DirRed dr_aux2 = new IP(10,1,1,0);
+
+		router2int.getSistema_operativo().addDirRed(dr_aux2);
+		router2int.getSistema_operativo().addDirRed(dr_aux);
+
+		router2int.getSistema_operativo().mostrarRutas();
+		System.out.println(router2int.getSistema_operativo().TieneDefaultInt());
+		
 		System.out.println("");
 		
 		pruebas_PC pc5 = new pruebas_PC();
@@ -156,7 +166,7 @@ public class pruebas_main {
 		System.out.println(">>>Enviar ICMPRequest de Pc5 a Pc4");
 		System.out.println("");
 		pc5.getSO().enviarPaquete(p3, pc4);
-		
+	
 		
 		
 	}
