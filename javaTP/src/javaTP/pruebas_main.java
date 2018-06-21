@@ -132,9 +132,7 @@ public class pruebas_main {
 
 		router2int.getSistema_operativo().addDirRed(dr_aux2);
 		router2int.getSistema_operativo().addDirRed(dr_aux);
-
 		router2int.getSistema_operativo().mostrarRutas();
-		System.out.println(router2int.getSistema_operativo().TieneDefaultInt());
 		
 		System.out.println("");
 		
